@@ -1,3 +1,13 @@
+#define WINGDIAPI
+#define APIENTRY __stdcall
+
+#include <windows.h>
+#include <GL/gl.h>
+#include <GL/glext.h>
+#include <GL/wgl.h>
+#include <GL/wglext.h>
+#include <cstdio>
+
 #define UNIMPLEMENTED() \
 fprintf(stderr, "[VkWrapper] NOT IMPLEMENTED: %s\n", __func__)
 

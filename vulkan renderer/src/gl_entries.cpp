@@ -15,6 +15,8 @@ extern "C" {
         UNIMPLEMENTED();
     }
 
+    // ── All GL-fucktions ─────────────────────────────────────
+
     // ── Shader ──────────────────────────────────────────────
     __declspec(dllexport) GLuint WINAPI glCreateShader(GLenum type) {
         UNIMPLEMENTED(); return 1;
@@ -232,5 +234,117 @@ extern "C" {
     }
     __declspec(dllexport) void WINAPI glDeleteRenderbuffers(GLsizei n, const GLuint* renderbuffers) {
         UNIMPLEMENTED();
+    }
+    // ── Requerement so GD opens a window ──
+
+    __declspec(dllexport) void WINAPI glTexImage2D(
+        GLenum target, GLint level, GLint internalformat,
+        GLsizei width, GLsizei height, GLint border,
+        GLenum format, GLenum type, const void* pixels)
+    {
+        UNIMPLEMENTED();
+    }
+
+    __declspec(dllexport) void WINAPI glTexSubImage2D(
+        GLenum target, GLint level,
+        GLint xoffset, GLint yoffset,
+        GLsizei width, GLsizei height,
+        GLenum format, GLenum type, const void* pixels)
+    {
+        UNIMPLEMENTED();
+    }
+
+    __declspec(dllexport) void WINAPI glGetIntegerv(GLenum pname, GLint* data) {
+        UNIMPLEMENTED(); if (data) *data = 0;
+    }
+
+    __declspec(dllexport) void WINAPI glGetFloatv(GLenum pname, GLfloat* data) {
+        UNIMPLEMENTED(); if (data) *data = 0.0f;
+    }
+
+    __declspec(dllexport) GLenum WINAPI glGetError() {
+        return GL_NO_ERROR; // no UNIMPLEMENTED log – will be called in tight loops
+    }
+
+    __declspec(dllexport) const GLubyte* WINAPI glGetString(GLenum name) {
+        switch (name) {
+            case GL_VERSION:    return (const GLubyte*)"3.3.0";
+            case GL_VENDOR:     return (const GLubyte*)"VkWrapper";
+            case GL_RENDERER:   return (const GLubyte*)"Vulkan";
+            case GL_EXTENSIONS: return (const GLubyte*)"";
+            default:            return (const GLubyte*)"";
+        }
+    }
+
+    __declspec(dllexport) const GLubyte* WINAPI glGetStringi(GLenum name, GLuint index) {
+        return (const GLubyte*)"";
+    }
+
+    __declspec(dllexport) void WINAPI glDrawElements(
+        GLenum mode, GLsizei count, GLenum type, const void* indices)
+    {
+        UNIMPLEMENTED();
+    }
+
+    __declspec(dllexport) void WINAPI glViewport(GLint x, GLint y, GLsizei width, GLsizei height) {
+        UNIMPLEMENTED();
+    }
+
+    __declspec(dllexport) void WINAPI glScissor(GLint x, GLint y, GLsizei width, GLsizei height) {
+        UNIMPLEMENTED();
+    }
+
+    __declspec(dllexport) void WINAPI glLineWidth(GLfloat width) {
+        UNIMPLEMENTED();
+    }
+
+    __declspec(dllexport) GLenum WINAPI glCheckFramebufferStatus(GLenum target) {
+        return GL_FRAMEBUFFER_COMPLETE;
+    }
+
+    __declspec(dllexport) void WINAPI glFramebufferTexture2D(
+        GLenum target, GLenum attachment,
+        GLenum textarget, GLuint texture, GLint level)
+    {
+        UNIMPLEMENTED();
+    }
+
+    __declspec(dllexport) void WINAPI glBindAttribLocation(
+        GLuint program, GLuint index, const GLchar* name)
+    {
+        UNIMPLEMENTED();
+    }
+
+    __declspec(dllexport) void WINAPI glFlush()  { UNIMPLEMENTED(); }
+    __declspec(dllexport) void WINAPI glFinish() { UNIMPLEMENTED(); }
+
+    // ── WGL – Important for Linux users (Arch btw) ──
+
+    __declspec(dllexport) HGLRC WINAPI wglCreateContext(HDC hdc) {
+        UNIMPLEMENTED(); return (HGLRC)1;
+    }
+
+    __declspec(dllexport) BOOL WINAPI wglDeleteContext(HGLRC hglrc) {
+        UNIMPLEMENTED(); return TRUE;
+    }
+
+    __declspec(dllexport) BOOL WINAPI wglMakeCurrent(HDC hdc, HGLRC hglrc) {
+        UNIMPLEMENTED(); return TRUE;
+    }
+
+    __declspec(dllexport) HGLRC WINAPI wglGetCurrentContext() {
+        UNIMPLEMENTED(); return (HGLRC)1;
+    }
+
+    __declspec(dllexport) HDC WINAPI wglGetCurrentDC() {
+        UNIMPLEMENTED(); return (HDC)1;
+    }
+
+    __declspec(dllexport) PROC WINAPI wglGetProcAddress(LPCSTR lpszProc) {
+        UNIMPLEMENTED(); return nullptr;
+    }
+
+    __declspec(dllexport) BOOL WINAPI wglSwapIntervalEXT(int interval) {
+        UNIMPLEMENTED(); return TRUE;
     }
 }

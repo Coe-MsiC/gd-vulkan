@@ -7,6 +7,7 @@
 #include <GL/wgl.h>
 #include <GL/wglext.h>
 #include <cstdio>
+#include <cstdlib>
 
 #define UNIMPLEMENTED() \
 fprintf(stderr, "[VkWrapper] NOT IMPLEMENTED: %s\n", __func__)
@@ -328,33 +329,43 @@ extern "C" {
     __declspec(dllexport) void WINAPI glFlush()  { UNIMPLEMENTED(); }
     __declspec(dllexport) void WINAPI glFinish() { UNIMPLEMENTED(); }
 
-    // ── WGL – Important for Linux users (Arch btw) ──
+    // ── WGL – fake context ──
 
     __declspec(dllexport) HGLRC WINAPI wglCreateContext(HDC hdc) {
-        UNIMPLEMENTED(); return (HGLRC)1;
+        fprintf(stderr, "[VkWrapper] wglCreateContext\n");
+        return (HGLRC)calloc(1, 4096); // 4KB
     }
 
     __declspec(dllexport) BOOL WINAPI wglDeleteContext(HGLRC hglrc) {
-        UNIMPLEMENTED(); return TRUE;
+        fprintf(stderr, "[VkWrapper] wglDeleteContext\n");
+        if (hglrc) free(hglrc);
+        return TRUE;
     }
 
     __declspec(dllexport) BOOL WINAPI wglMakeCurrent(HDC hdc, HGLRC hglrc) {
-        UNIMPLEMENTED(); return TRUE;
+        fprintf(stderr, "[VkWrapper] wglMakeCurrent\n");
+        return TRUE;
     }
 
     __declspec(dllexport) HGLRC WINAPI wglGetCurrentContext() {
-        UNIMPLEMENTED(); return (HGLRC)1;
+        // fake context - shouldnt be 0
+        static void* ctx = nullptr;
+        if (!ctx) ctx = calloc(1, 4096);
+        return (HGLRC)ctx;
     }
 
     __declspec(dllexport) HDC WINAPI wglGetCurrentDC() {
-        UNIMPLEMENTED(); return (HDC)1;
+        fprintf(stderr, "[VkWrapper] wglGetCurrentDC\n");
+        return (HDC)1;
     }
 
     __declspec(dllexport) PROC WINAPI wglGetProcAddress(LPCSTR lpszProc) {
-        UNIMPLEMENTED(); return nullptr;
+        fprintf(stderr, "[VkWrapper] wglGetProcAddress: %s\n", lpszProc ? lpszProc : "null");
+        return nullptr;
     }
 
     __declspec(dllexport) BOOL WINAPI wglSwapIntervalEXT(int interval) {
-        UNIMPLEMENTED(); return TRUE;
+        fprintf(stderr, "[VkWrapper] wglSwapIntervalEXT: %d\n", interval);
+        return TRUE;
     }
 }

@@ -1,2 +1,236 @@
-extern "C" __declspec(dllexport) void WINAPI glDrawArrays(...) { ... }
-extern "C" __declspec(dllexport) void WINAPI glBindTexture(...) { ... }
+#define UNIMPLEMENTED() \
+fprintf(stderr, "[VkWrapper] NOT IMPLEMENTED: %s\n", __func__)
+
+extern "C" {
+
+    __declspec(dllexport) GLuint WINAPI glCreateProgram() {
+        UNIMPLEMENTED();
+        return 1; // fake handle
+    }
+
+    __declspec(dllexport) void WINAPI glShaderSource(
+        GLuint shader, GLsizei count,
+        const GLchar** string, const GLint* length)
+    {
+        UNIMPLEMENTED();
+    }
+
+    // ── Shader ──────────────────────────────────────────────
+    __declspec(dllexport) GLuint WINAPI glCreateShader(GLenum type) {
+        UNIMPLEMENTED(); return 1;
+    }
+    __declspec(dllexport) void WINAPI glCompileShader(GLuint shader) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glAttachShader(GLuint program, GLuint shader) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glLinkProgram(GLuint program) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glUseProgram(GLuint program) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glDeleteShader(GLuint shader) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glDeleteProgram(GLuint program) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glGetProgramiv(GLuint program, GLenum pname, GLint* params) {
+        UNIMPLEMENTED(); if (params) *params = 1;
+    }
+    __declspec(dllexport) void WINAPI glGetShaderiv(GLuint shader, GLenum pname, GLint* params) {
+        UNIMPLEMENTED(); if (params) *params = 1;
+    }
+    __declspec(dllexport) void WINAPI glGetShaderSource(GLuint shader, GLsizei bufSize, GLsizei* length, GLchar* source) {
+        UNIMPLEMENTED(); if (length) *length = 0;
+    }
+
+    // ── Uniforms ─────────────────────────────────────────────
+    __declspec(dllexport) GLint WINAPI glGetUniformLocation(GLuint program, const GLchar* name) {
+        UNIMPLEMENTED(); return 0;
+    }
+    __declspec(dllexport) void WINAPI glUniformMatrix4fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat* value) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glUniform1i(GLint location, GLint v0) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glUniform1f(GLint location, GLfloat v0) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glUniform2f(GLint location, GLfloat v0, GLfloat v1) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glUniform2fv(GLint location, GLsizei count, const GLfloat* value) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glUniform2i(GLint location, GLint v0, GLint v1) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glUniform2iv(GLint location, GLsizei count, const GLint* value) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glUniform3f(GLint location, GLfloat v0, GLfloat v1, GLfloat v2) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glUniform3fv(GLint location, GLsizei count, const GLfloat* value) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glUniform3i(GLint location, GLint v0, GLint v1, GLint v2) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glUniform3iv(GLint location, GLsizei count, const GLint* value) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glUniform4f(GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glUniform4fv(GLint location, GLsizei count, const GLfloat* value) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glUniform4i(GLint location, GLint v0, GLint v1, GLint v2, GLint v3) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glUniform4iv(GLint location, GLsizei count, const GLint* value) {
+        UNIMPLEMENTED();
+    }
+
+    // ── Textures ─────────────────────────────────────────────
+    __declspec(dllexport) void WINAPI glGenTextures(GLsizei n, GLuint* textures) {
+        UNIMPLEMENTED();
+        for (GLsizei i = 0; i < n; i++) textures[i] = i + 1;
+    }
+    __declspec(dllexport) void WINAPI glBindTexture(GLenum target, GLuint texture) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glTexParameteri(GLenum target, GLenum pname, GLint param) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glPixelStorei(GLenum pname, GLint param) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glActiveTexture(GLenum texture) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glDeleteTextures(GLsizei n, const GLuint* textures) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glGenerateMipmap(GLenum target) {
+        UNIMPLEMENTED();
+    }
+
+    // ── Buffer Objects ────────────────────────────────────────
+    __declspec(dllexport) void WINAPI glGenBuffers(GLsizei n, GLuint* buffers) {
+        UNIMPLEMENTED();
+        for (GLsizei i = 0; i < n; i++) buffers[i] = i + 1;
+    }
+    __declspec(dllexport) void WINAPI glBindBuffer(GLenum target, GLuint buffer) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glBufferData(GLenum target, GLsizeiptr size, const void* data, GLenum usage) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glBufferSubData(GLenum target, GLintptr offset, GLsizeiptr size, const void* data) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glDeleteBuffers(GLsizei n, const GLuint* buffers) {
+        UNIMPLEMENTED();
+    }
+
+    // ── Vertex Arrays ─────────────────────────────────────────
+    __declspec(dllexport) void WINAPI glGenVertexArrays(GLsizei n, GLuint* arrays) {
+        UNIMPLEMENTED();
+        for (GLsizei i = 0; i < n; i++) arrays[i] = i + 1;
+    }
+    __declspec(dllexport) void WINAPI glBindVertexArray(GLuint array) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glDeleteVertexArrays(GLsizei n, const GLuint* arrays) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glEnableVertexAttribArray(GLuint index) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glDisableVertexAttribArray(GLuint index) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glVertexAttribPointer(GLuint index, GLint size, GLenum type,
+                                                            GLboolean normalized, GLsizei stride, const void* pointer)
+    {
+        UNIMPLEMENTED();
+    }
+
+    // ── Draw Calls ────────────────────────────────────────────
+    __declspec(dllexport) void WINAPI glDrawArrays(GLenum mode, GLint first, GLsizei count) {
+        UNIMPLEMENTED();
+    }
+
+    // ── Render State ──────────────────────────────────────────
+    __declspec(dllexport) void WINAPI glClear(GLbitfield mask) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glClearColor(GLfloat r, GLfloat g, GLfloat b, GLfloat a) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glClearDepth(GLdouble depth) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glEnable(GLenum cap) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glDisable(GLenum cap) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glBlendFunc(GLenum sfactor, GLenum dfactor) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glBlendEquation(GLenum mode) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glDepthFunc(GLenum func) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glGetBooleanv(GLenum pname, GLboolean* data) {
+        UNIMPLEMENTED(); if (data) *data = GL_FALSE;
+    }
+    __declspec(dllexport) void WINAPI glHint(GLenum target, GLenum mode) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glPointSize(GLfloat size) {
+        UNIMPLEMENTED();
+    }
+
+    // ── Framebuffer Objects ───────────────────────────────────
+    __declspec(dllexport) void WINAPI glGenFramebuffers(GLsizei n, GLuint* framebuffers) {
+        UNIMPLEMENTED();
+        for (GLsizei i = 0; i < n; i++) framebuffers[i] = i + 1;
+    }
+    __declspec(dllexport) void WINAPI glBindFramebuffer(GLenum target, GLuint framebuffer) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glDeleteFramebuffers(GLsizei n, const GLuint* framebuffers) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glFramebufferRenderbuffer(GLenum target, GLenum attachment,
+                                                                GLenum renderbuffertarget, GLuint renderbuffer)
+    {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glGenRenderbuffers(GLsizei n, GLuint* renderbuffers) {
+        UNIMPLEMENTED();
+        for (GLsizei i = 0; i < n; i++) renderbuffers[i] = i + 1;
+    }
+    __declspec(dllexport) void WINAPI glBindRenderbuffer(GLenum target, GLuint renderbuffer) {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glRenderbufferStorage(GLenum target, GLenum internalformat,
+                                                            GLsizei width, GLsizei height)
+    {
+        UNIMPLEMENTED();
+    }
+    __declspec(dllexport) void WINAPI glDeleteRenderbuffers(GLsizei n, const GLuint* renderbuffers) {
+        UNIMPLEMENTED();
+    }
+}

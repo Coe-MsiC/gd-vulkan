@@ -6,10 +6,26 @@
 	"id": "coe_msic.gd_vulkan",
 	"name": "Vulkan Renderer",
 	"version": "v0.1.0",
-	"developer": "Coe MsiC",
+	"developer": "CoeMsiC",
 	"description": "Change the Rendering Engine to Vulkan",
 	"dependencies": {
 		"geode.node-ids": ">=v1.20.0",
         "hiimjasmine00.optional_settings": ">=v1.0.0"
+	}
+	"tags": [
+		"peformance",
+		"enhancement"
+	],
+	"settings": {
+		"use-vulkan": {
+			"type": "bool",
+			"default": false
+			"name": "Use Vulkan translation Layer"
+
+		}
+	}
+	"links": {
+	"source": "https://github.com/Coe-MsiC/gd-vulkan"
+
 	}
 }

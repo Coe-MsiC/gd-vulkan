@@ -1,0 +1,15 @@
+{
+	"geode": "$GEODE_VERSION",
+	"gd": {
+		"win": "2.2081"
+	},
+	"id": "coe_msic.gd_vulkan",
+	"name": "Vulkan Renderer",
+	"version": "v0.1.0",
+	"developer": "Coe MsiC",
+	"description": "Change the Rendering Engine to Vulkan",
+	"dependencies": {
+		"geode.node-ids": ">=v1.20.0",
+        "hiimjasmine00.optional_settings": ">=v1.0.0"
+	}
+}
